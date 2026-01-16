@@ -55,22 +55,21 @@ missing-middle/
 │       ├── geospatial.py                     # GeoJSON handling and spatial operations
 │       └── insights.py                       # Natural language insight generation
 │
-└── frontend/
-    └── missing-middle/                       # React application
-        ├── src/
-        │   ├── App.jsx                       # Main application component
-        │   ├── App.css                       # Global styles
-        │   ├── components/                   # React components
-        │   │   ├── ControlPanel.jsx          # Year/city selection controls
-        │   │   ├── PopulationPyramid.jsx     # Main population view container
-        │   │   ├── AgePopulationPyramid.jsx  # Age-based visualizations
-        │   │   ├── RacePopulationPyramid.jsx # Race-based visualizations
-        │   │   ├── HousingMap.jsx            # Housing supply map
-        │   │   └── GroupDetails.jsx          # Detailed breakdown panel
-        │   └── utils/
-        │       └── api.js                    # API client functions
-        ├── package.json
-        └── vite.config.js
+└── frontend/                                 # React application
+   ├── src/
+   │   ├── App.jsx                            # Main application component
+   │   ├── App.css                            # Global styles
+   │   ├── components/                        # React components
+   |   │   ├── ControlPanel.jsx               # Year/city selection controls
+   │   │   ├── PopulationPyramid.jsx          # Main population view container
+   │   │   ├── AgePopulationPyramid.jsx       # Age-based visualizations
+   │   │   ├── RacePopulationPyramid.jsx      # Race-based visualizations
+   │   │   ├── HousingMap.jsx                 # Housing supply map
+   │   │   └── GroupDetails.jsx               # Detailed breakdown panel
+   │   └── utils/
+   │       └── api.js                         # API client functions
+   ├── package.json
+   └── vite.config.js
 ```
 
 ## Prerequisites
@@ -107,7 +106,7 @@ missing-middle/
 
 1. **Navigate to frontend directory:**
    ```bash
-   cd frontend/missing-middle
+   cd frontend
    ```
 
 2. **Install dependencies:**
@@ -151,7 +150,7 @@ The frontend API client is configured in `src/utils/api.js`. By default, it assu
 
 2. **Start the frontend dev server:**
    ```bash
-   cd frontend/missing-middle
+   cd frontend
    npm run dev
    ```
    The frontend will be available at `http://localhost:5173` (or another port if 5173 is busy)
@@ -163,7 +162,7 @@ The frontend API client is configured in `src/utils/api.js`. By default, it assu
 
 1. **Build the frontend:**
    ```bash
-   cd frontend/missing-middle
+   cd frontend
    npm run build
    ```
 
