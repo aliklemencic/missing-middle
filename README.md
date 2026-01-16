@@ -11,12 +11,12 @@ A full-stack web application that visualizes demographic shifts and housing chan
 - **Detailed Breakdown**: Detailed racial data or male/female population changes within each age group for each time period
 - **Time Period Comparison**: Compare demographic data between any two census years (1990, 2000, 2010, 2020)
 
-### 🏘️ Housing Supply Visualization
+### Housing Supply Visualization
 - **Interactive Choropleth Maps**: Geographic visualization of housing unit changes at the block group level
 - **Housing-Demographic Insights**: Automated analysis connecting housing supply changes with population shifts
 - **City-Specific Analysis**: Focus on individual cities while maintaining regional context
 
-### 🎯 Key Capabilities
+### Key Capabilities
 - **Multi-City Support**: Analyze data for ~100 Massachusetts cities
 - **Dynamic Visualizations**: Responsive charts and maps that adapt to data ranges
 - **Insight Generation**: Automated natural language insights highlighting key demographic trends
