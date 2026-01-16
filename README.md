@@ -279,9 +279,8 @@ Shapefiles should follow the Census TIGER/Line naming convention:
 
 ## Future Enhancements
 
-Planned features (currently disabled in UI):
-- Transportation analysis
-- Food access mapping
+- Transportation analysis (currently disabled in UI)
+- Food access mapping (currently disabled in UI)
 - Additional time periods
 - Export functionality
 - Comparison across multiple cities
@@ -297,3 +296,4 @@ Planned features (currently disabled in UI):
 - No requests or data is cached, which could improve performance if implemented.
 - The API doesn't have rate limiting or CORS implemented.
 - There are no tests for the application. These would be a high priority to add.
+- All features were added in a single commit which is not the proper way to work in version control. Smaller features should've been commited as they were developed.
