@@ -3,7 +3,10 @@
 
 def get_age_groups() -> dict[str, str]:
     """
-    Returns a dictionary of column names and their corresponding age groups for the population pyramid.
+    Returns a dictionary mapping CSV column age ranges to display age groups.
+    
+    Multiple CSV columns may map to the same display group (e.g., "15-17" and "18-19" 
+    both map to "15 - 19"). This allows aggregating finer-grained data into broader categories.
     """
     return {
         "under_5": "00 - 04",

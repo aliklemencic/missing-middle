@@ -5,6 +5,7 @@ const ControlPanel = ({ year1, year2, city, setYear1, setYear2, setCity }) => {
           <div className="control-group">
             <label className="control-label" htmlFor="year1-select">Year 1</label>
             <select id="year1-select" value={year1} onChange={e => setYear1(e.target.value)}>
+            {/* Could derive these from the CSV file in the future */}
               <option value="1990">1990</option>
               <option value="2000">2000</option>
               <option value="2010">2010</option>
@@ -15,6 +16,7 @@ const ControlPanel = ({ year1, year2, city, setYear1, setYear2, setCity }) => {
           <div className="control-group">
             <label className="control-label" htmlFor="year2-select">Year 2</label>
             <select id="year2-select" value={year2} onChange={e => setYear2(e.target.value)}>
+            {/* Could derive these from the CSV file in the future */}
               <option value="1990">1990</option>
               <option value="2000">2000</option>
               <option value="2010">2010</option>
@@ -25,6 +27,7 @@ const ControlPanel = ({ year1, year2, city, setYear1, setYear2, setCity }) => {
           <div className="control-group">
             <label className="control-label" htmlFor="city-select">City</label>
             <select id="city-select" value={city} onChange={e => setCity(e.target.value)}>
+              {/* Could derive these from the CSV file in the future */}
               <option value="Acton">Acton</option>
               <option value="Arlington">Arlington</option>
               <option value="Ashland">Ashland</option>

@@ -24,6 +24,7 @@ def get_age_group_counts(
     df = df[df["TOWN"] == city]
 
     age_group_counts = {}
+    # Accumulate counts for each plot age group
     for csv_age, plot_age in age_groups.items():
         age_group_data = age_group_counts.get(plot_age, {})
         for prefix in ["male", "female"]:
@@ -54,6 +55,7 @@ def get_race_group_counts(df: pd.DataFrame, year: str, city: str) -> dict[str, i
     counts = {}
     for race in race_groups:
         col_name = f"pop_{race}_{year}"
+        # Normalize label: "two_plus" in CSV becomes "multiracial" in UI
         race_label = "multiracial" if race == "two_plus" else race
         race_group_count = counts.get(race_label, 0) + int(df[col_name].sum())
         counts[race_label] = race_group_count

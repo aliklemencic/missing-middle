@@ -14,23 +14,27 @@ const AgePopulationPyramid = ({ data, year1, year2, city }) => {
   const xAxisConfig = useMemo(() => {
     const maxAbsValue = Math.max(...combinedChange.map(Math.abs));
     
-    // Round up to nearest nice number (500, 1000, 2000, etc.)
+    // Round up to nearest "nice" number for clean axis labels
+    // Larger ranges use larger increments (500, 1000, 2000, etc.)
     const roundTo = maxAbsValue > 2000 ? 1000 : 
                     maxAbsValue > 1000 ? 500 : 
                     maxAbsValue > 500 ? 250 : 100;
     
     const maxRounded = Math.ceil(maxAbsValue / roundTo) * roundTo;
     
-    // Generate symmetric tick values
-    const numTicks = 7; // Odd number for symmetry around zero
+    // Generate symmetric tick values around zero
+    // Odd number of ticks (7) ensures zero is centered
+    const numTicks = 7;
     const step = Math.ceil(maxRounded / Math.floor(numTicks / 2));
     
     const tickvals = [];
     const ticktext = [];
     
+    // Create ticks from negative to positive, symmetric around zero
     for (let i = -Math.floor(numTicks / 2); i <= Math.floor(numTicks / 2); i++) {
       const value = i * step;
       tickvals.push(value);
+      // Display absolute value with formatting (e.g., "1,000" instead of "-1000")
       ticktext.push(Math.abs(value).toLocaleString());
     }
     

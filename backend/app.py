@@ -13,10 +13,11 @@ from validation import RequestValidator, ValidationError
 
 app = Flask(__name__)
 
-# Load data once at startup
+# Load data once at startup (not per-request for performance)
 df = pd.read_csv(CSV_FILE_STR)
 
-# Initialize validator
+# Initialize validator with available years
+# Valid years are hardcoded but could be derived from CSV columns
 VALID_YEARS = ["1990", "2000", "2010", "2020"]
 validator = RequestValidator(df, VALID_YEARS)
 
@@ -83,6 +84,8 @@ def housing_data() -> Response:
         )
 
         sentences = []
+        # Only generate insights if population change data is provided
+        # This allows the endpoint to work without insights if needed
         if city_change_absolute:
             city_change_dict = {
                 "change": int(city_change_absolute),

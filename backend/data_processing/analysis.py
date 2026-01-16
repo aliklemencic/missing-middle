@@ -25,10 +25,11 @@ def calculate_age_group_changes(
     for age_group, year1_count in age_group_year1.items():
         # Male changes
         male_change_absolute = age_group_year2[age_group]["male"] - year1_count["male"]
+        # Calculate percent change, handling division by zero
         male_change_percent = (
             male_change_absolute / year1_count["male"] * 100
             if year1_count["male"] != 0
-            else age_group_year2[age_group]["male"]
+            else 100 if male_change_absolute > 0 else 0
         )
 
         # Female changes
@@ -38,7 +39,7 @@ def calculate_age_group_changes(
         female_change_percent = (
             female_change_absolute / year1_count["female"] * 100
             if year1_count["female"] != 0
-            else age_group_year2[age_group]["female"]
+            else 100 if female_change_absolute > 0 else 0
         )
 
         # Total changes
@@ -48,12 +49,13 @@ def calculate_age_group_changes(
         total_change_percent = (
             total_change_absolute / year1_count["total"] * 100
             if year1_count["total"] != 0
-            else age_group_year2[age_group]["total"]
+            else 100 if total_change_absolute > 0 else 0
         )
 
         age_group_change_data[age_group] = {
             "male_change_absolute": male_change_absolute,
             "male_change_percent": male_change_percent,
+            # Color coding: red for decreases, blue/coral/green for increases
             "male_color": "darkred" if male_change_absolute < 0 else "steelblue",
             "female_change_absolute": female_change_absolute,
             "female_change_percent": female_change_percent,
@@ -108,6 +110,8 @@ def get_top_age_group_changes(
     Returns:
         Dictionary with top increase and decrease
     """
+    # Flatten all age group changes into a single list to allow finding
+    # the single largest increase/decrease across all categories
     all_changes = [
         {
             "group": f"{category} population aged {age_group}",

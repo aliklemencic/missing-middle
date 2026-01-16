@@ -91,5 +91,6 @@ class RequestValidator:
         self.validate_city(city)
 
         # Additional validation: ensure years are in logical order
+        # Prevents invalid comparisons (e.g., 2020 to 2010)
         if int(year1) >= int(year2):
             raise ValidationError(f"year1 ({year1}) must be before year2 ({year2})")

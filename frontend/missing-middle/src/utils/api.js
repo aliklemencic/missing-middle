@@ -10,7 +10,7 @@ class APIError extends Error {
 }
 
 /**
- * Fetch population data with proper error handling
+ * Fetch population data
  */
 export async function fetchPopulationData(year1, year2, city) {
   try {
@@ -44,7 +44,7 @@ export async function fetchPopulationData(year1, year2, city) {
 }
 
 /**
- * Fetch housing data with proper error handling
+ * Fetch housing data
  */
 export async function fetchHousingData(year1, year2, city, city_change_absolute, city_change_percent) {
   try {

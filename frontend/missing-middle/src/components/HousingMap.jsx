@@ -54,19 +54,23 @@ const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_perc
     );
   }
 
-  // Calculate center of city
+  // Calculate geographic center of city for map centering
+  // Uses centroid of all block group polygons in the city
   const cityFeatures = housingData.features.filter(f => f.properties.TOWN === city);
   
-  let centerLon = -71.1;  // Default to Eastern MA
+  // Default center: Eastern Massachusetts (fallback if no features found)
+  let centerLon = -71.1;
   let centerLat = 42.35;
   
   if (cityFeatures.length > 0) {
+    // Calculate centroid by averaging all coordinate points
     let sumLon = 0;
     let sumLat = 0;
     let totalPoints = 0;
     
     cityFeatures.forEach(feature => {
       if (feature.geometry.type === 'Polygon') {
+        // First ring contains the outer boundary coordinates
         const coords = feature.geometry.coordinates[0];
         coords.forEach(([lon, lat]) => {
           sumLon += lon;
@@ -74,6 +78,7 @@ const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_perc
           totalPoints++;
         });
       } else if (feature.geometry.type === 'MultiPolygon') {
+        // MultiPolygon has multiple polygons, each with coordinate rings
         feature.geometry.coordinates.forEach(polygon => {
           polygon[0].forEach(([lon, lat]) => {
             sumLon += lon;
@@ -104,6 +109,7 @@ const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_perc
             type: "choropleth",
             geojson: housingData,
             locations: housingData.features.map(f => f.properties.GEOID20),
+            // z-values: only chosen city has data, others use sentinel value for transparency
             z: housingData.features.map(f => f.properties.z ?? -500000000),
             featureidkey: "properties.GEOID20",
             text: housingData.features.map(
@@ -111,6 +117,8 @@ const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_perc
                 ? `${f.properties.TOWN}: ${f.properties.housing_units_change} units`
                 : `${f.properties.TOWN}`
             ),
+            // Colorscale: transparent for non-city data, blue gradient for city changes
+            // 0-0.0001 range makes sentinel values (non-city data) transparent
             colorscale: [
               [0, 'rgba(255, 255, 255, 0)'],
               [0.0001, '#d1e5f0'],

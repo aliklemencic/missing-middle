@@ -11,6 +11,7 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
   const combinedChangeColors = raceGroups.map(ag => data.changes[ag].color);
 
   // Calculate dynamic tick values based on data range
+  // Race groups typically have larger changes than age groups, so use larger increments
   const xAxisConfig = useMemo(() => {
     const maxAbsValue = Math.max(...combinedChange.map(Math.abs));
     
@@ -106,7 +107,7 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
 
           <p className="section-subtitle">Click a racial group to see more details.</p>
 
-<Plot
+          <Plot
             data={[
               {
                 x: combinedChange,

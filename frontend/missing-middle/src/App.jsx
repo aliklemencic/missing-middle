@@ -18,6 +18,7 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch population data whenever filters change
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);

@@ -57,6 +57,7 @@ def create_housing_demographic_sentences(
 
     # Housing growth with population growth
     if housing_change > 0 and pop_change > 0:
+        # Calculate people per new housing unit to assess household size trends
         ratio = abs(pop_change) / housing_change if housing_change != 0 else 0
         sentences.append(
             f"Housing units increased by {abs(housing_change):,} ({abs(housing_percent):.1f}%) "

@@ -17,6 +17,8 @@ def construct_geoid(df: pd.DataFrame) -> pd.DataFrame:
         DataFrame with GEOID column added
     """
     df = df.copy()
+    # Construct GEOID: 2-digit state + 3-digit county + 6-digit tract + block group
+    # zfill ensures proper zero-padding for FIPS codes
     df["GEOID"] = (
         df["STATEA"].astype(str).str.zfill(2)
         + df["COUNTYA"].astype(str).str.zfill(3)
@@ -88,7 +90,8 @@ def calculate_housing_changes(
         axis=1,
     )
 
-    # Only fill z-values for the specified city
+    # Only fill z-values for the specified city (for map visualization)
+    # Other cities remain None/transparent on the map
     gdf["z"] = gdf.apply(
         lambda row: row["housing_units_change"] if row["TOWN"] == city else None,
         axis=1,
@@ -127,12 +130,14 @@ def merge_geojson(
 
     all_gdfs = []
     for state_code, county_code in unique_combos.itertuples(index=False, name=None):
+        # Construct 5-digit FIPS code (state + county)
         fips = f"{str(state_code).zfill(2)}{str(county_code).zfill(3)}"
 
-        # Load shapefile
+        # Load shapefile for this county
         gdf = load_shapefile(fips, shapefile_dir, shapefile_pattern)
 
-        # Merge housing data into GeoDataFrame
+        # Merge housing data into GeoDataFrame using GEOID as the key
+        # left join preserves all block groups even if they lack housing data
         gdf = gdf.merge(df, left_on="GEOID20", right_on="GEOID", how="left")
 
         # Calculate housing changes

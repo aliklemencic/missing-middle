@@ -1,4 +1,5 @@
 const GroupDetails = ({ selectedGroup, groupData, setSelectedGroup, year1, year2, city }) => {
+  // Age groups have gender breakdown (male/female), race groups don't
   const hasGenderBreakdown = groupData.maleYear1 !== undefined;
   const capitalize = (str) => {
     if (!str) return '';
