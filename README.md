@@ -297,3 +297,4 @@ Shapefiles should follow the Census TIGER/Line naming convention:
 - The API doesn't have rate limiting or CORS implemented.
 - There are no tests for the application. These would be a high priority to add.
 - All features were added in a single commit which is not the proper way to work in version control. Smaller features should've been commited as they were developed.
+- Due to human error, not all block groups for every municipality MAPC serves is available. If given more time, this would be essential to get correct.
