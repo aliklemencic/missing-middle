@@ -41,7 +41,7 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1>The Missing Middle</h1>
-        <p className="app-subtitle" style={{ marginTop: '0rem' }}>
+        <p className="app-subtitle no-margin">
           Exploring demographic shifts in Massachusetts communities.
         </p>
       </header>
@@ -72,7 +72,6 @@ function App() {
           className={`tab-button ${activeTab === 'transportation' ? 'active' : ''}`}
           onClick={() => setActiveTab('transportation')}
           disabled
-          style={{ opacity: 0.5, cursor: 'not-allowed' }}
         >
           Transportation
         </button>
@@ -80,7 +79,6 @@ function App() {
           className={`tab-button ${activeTab === 'food' ? 'active' : ''}`}
           onClick={() => setActiveTab('food')}
           disabled
-          style={{ opacity: 0.5, cursor: 'not-allowed' }}
         >
           Food Access
         </button>
@@ -109,10 +107,10 @@ function App() {
 
         {!isLoading && !error && (
           <>
-            <div style={{ display: activeTab === 'population' ? 'block' : 'none' }}>
+            <div className={`tab-content ${activeTab === 'population' ? '' : 'hidden'}`}>
               <PopulationPyramid data={pyramidData} year1={year1} year2={year2} city={city} />
             </div>
-            <div style={{ display: activeTab === 'housing' ? 'block' : 'none' }}>
+            <div className={`tab-content ${activeTab === 'housing' ? '' : 'hidden'}`}>
               <HousingMap 
                 year1={year1}
                 year2={year2}

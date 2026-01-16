@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { fetchHousingData } from "../utils/api";
-import "../App.css"; // Make sure to import if not already imported
 
 const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_percent }) => {
   const [housingData, setHousingData] = useState(null);
@@ -142,12 +141,7 @@ const HousingMap = ({ year1, year2, city, city_change_absolute, city_change_perc
       {/* Right column - Insights */}
       <div className="housing-map-right">
         <div className="insight-text">
-          <h3 style={{ 
-            marginTop: 0,
-            marginBottom: '1rem',
-            color: 'var(--text-primary)',
-            fontSize: '1.25rem',
-          }}>
+          <h3 className="insight-title">
             Key Insights
           </h3>
           {housingSentences && housingSentences.length > 0 ? (

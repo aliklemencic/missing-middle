@@ -11,67 +11,27 @@ const GroupDetails = ({ selectedGroup, groupData, setSelectedGroup, year1, year2
     : `${capitalize(groupData.raceGroup)} Population`;
 
   return (
-    <div style={{
-      position: 'relative',
-      flex: '1 1 500px',
-      minWidth: '450px',
-      maxWidth: '600px',
-      backgroundColor: 'var(--surface)',
-      borderRadius: '0.75rem',
-      padding: '1.5rem',
-      border: '2px solid var(--primary-color)',
-      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      maxHeight: '600px',
-      overflowY: 'auto',
-      animation: 'slideInRight 0.3s ease'
-    }}>
+    <div className="group-details-panel">
       {/* Close button */}
       <button 
         onClick={() => setSelectedGroup(null)}
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          background: 'none',
-          border: 'none',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          color: 'var(--text-secondary)',
-          padding: '0.25rem 0.5rem',
-          lineHeight: 1
-        }}>
+        className="group-details-close">
           ×
       </button>
 
       {/* Panel content */}
-      <h2 style={{ 
-        marginTop: 0,
-        paddingRight: '2rem',
-        color: 'var(--primary-color)',
-        fontSize: '1.4rem',
-        marginBottom: '0.5rem'
-      }}>
+      <h2 className="group-details-title">
         {groupLabel} in {city}
       </h2>
 
-      <h3 style={{ 
-        color: 'var(--text-primary)', 
-        fontSize: '1rem',
-        marginBottom: '1rem',
-        marginTop: 0
-        }}>
+      <h3 className="group-details-subtitle">
         {year1} → {year2}
       </h3>
 
       <div>
-        <div style={{ 
-          backgroundColor: 'var(--surface-light)',
-        }}>
-          <span style={{ fontSize: '1.25rem' }}>
-            <span style={{ 
-              color: groupData.totalChange >= 0 ? '#16a34a' : '#dc2626',
-              fontWeight: 'bold',
-            }}>
+        <div className="group-details-summary">
+          <span className="group-details-summary-text">
+            <span className={groupData.totalChange >= 0 ? 'group-details-change-positive' : 'group-details-change-negative'}>
               {groupData.totalChange >= 0 ? '+' : ''}
               {groupData.totalChange.toLocaleString()}
             </span>
@@ -83,73 +43,29 @@ const GroupDetails = ({ selectedGroup, groupData, setSelectedGroup, year1, year2
         {/* Only show gender breakdown if it exists */}
         {hasGenderBreakdown ? (
           <>
-            <table style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontSize: '0.9rem',
-              marginTop: '1rem'
-            }}>
+            <table className="data-table">
               <thead>
-                <tr style={{ borderBottom: '2px solid var(--surface-light)' }}>
-                  <th style={{ 
-                    textAlign: 'left', 
-                    padding: '0.25rem',
-                    fontWeight: 'bold',
-                    border: 'none',
-                    width: '80px'
-                  }}></th>
-                  <th style={{ 
-                    textAlign: 'left', 
-                    padding: '0.25rem',
-                    fontWeight: 'bold',
-                    border: 'none'
-                  }}>{year1}</th>
-                  <th style={{ 
-                    textAlign: 'left', 
-                    padding: '0.25rem',
-                    fontWeight: 'bold',
-                    border: 'none'
-                  }}>{year2}</th>
-                  <th style={{ 
-                    textAlign: 'left', 
-                    padding: '0.25rem',
-                    fontWeight: 'bold',
-                    border: 'none'
-                  }}>Change</th>
+                <tr>
+                  <th className="narrow"></th>
+                  <th>{year1}</th>
+                  <th>{year2}</th>
+                  <th>Change</th>
                 </tr>
               </thead>
               <tbody>
                 {/* Male row */}
-                <tr style={{ backgroundColor: 'var(--surface-light)' }}>
-                  <td style={{ 
-                    padding: '0.5rem 0.25rem',
-                    fontWeight: 'bold',
-                    borderLeft: '3px solid steelblue',
-                    border: 'none',
-                    width: '80px'
-                  }}>
+                <tr>
+                  <td className="border-left-male">
                     Men
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
+                  <td>
                     {groupData.maleYear1.toLocaleString()}
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
+                  <td>
                     {groupData.maleYear2.toLocaleString()}
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
-                    <span style={{ color: groupData.maleChange >= 0 ? '#16a34a' : '#dc2626' }}>
+                  <td>
+                    <span className={groupData.maleChange >= 0 ? 'group-details-change-positive' : 'group-details-change-negative'}>
                       {groupData.maleChange >= 0 ? '+' : ''}
                       {groupData.maleChange.toLocaleString()}
                     </span>
@@ -159,36 +75,18 @@ const GroupDetails = ({ selectedGroup, groupData, setSelectedGroup, year1, year2
                 </tr>
                 
                 {/* Female row */}
-                <tr style={{ backgroundColor: 'var(--surface-light)' }}>
-                  <td style={{ 
-                    padding: '0.5rem 0.25rem',
-                    fontWeight: 'bold',
-                    borderLeft: '3px solid lightcoral',
-                    border: 'none',
-                    width: '80px'
-                  }}>
+                <tr>
+                  <td className="border-left-female">
                     Women
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
+                  <td>
                     {groupData.femaleYear1.toLocaleString()}
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
+                  <td>
                     {groupData.femaleYear2.toLocaleString()}
                   </td>
-                  <td style={{ 
-                    textAlign: 'left', 
-                    padding: '0.5rem 0.25rem',
-                    border: 'none'
-                  }}>
-                    <span style={{ color: groupData.femaleChange >= 0 ? '#16a34a' : '#dc2626' }}>
+                  <td>
+                    <span className={groupData.femaleChange >= 0 ? 'group-details-change-positive' : 'group-details-change-negative'}>
                       {groupData.femaleChange >= 0 ? '+' : ''}
                       {groupData.femaleChange.toLocaleString()}
                     </span>
@@ -201,58 +99,23 @@ const GroupDetails = ({ selectedGroup, groupData, setSelectedGroup, year1, year2
           </>
         ) : (
           /* No gender breakdown - show single row */
-          <table style={{
-            width: '100%',
-            borderCollapse: 'collapse',
-            fontSize: '0.9rem',
-            marginTop: '1rem'
-          }}>
+          <table className="data-table">
             <thead>
-              <tr style={{ borderBottom: '2px solid var(--surface-light)' }}>
-                <th style={{ 
-                  textAlign: 'left', 
-                  padding: '0.25rem',
-                  fontWeight: 'bold',
-                  border: 'none',
-                  width: '60px'
-                }}>{year1}</th>
-                <th style={{ 
-                  textAlign: 'left', 
-                  padding: '0.25rem',
-                  fontWeight: 'bold',
-                  border: 'none',
-                  width: '60px'
-                }}>{year2}</th>
-                <th style={{ 
-                  textAlign: 'left', 
-                  padding: '0.25rem',
-                  fontWeight: 'bold',
-                  border: 'none'
-                }}>Change</th>
+              <tr>
+                <th className="medium">{year1}</th>
+                <th className="medium">{year2}</th>
+                <th>Change</th>
               </tr>
             </thead>
             <tbody>
-              <tr style={{ backgroundColor: 'var(--surface-light)' }}>
-                <td style={{ 
-                  textAlign: 'left', 
-                  padding: '0.5rem 0.25rem',
-                  border: 'none'
-                }}>
+              <tr>
+                <td>
                   {groupData.year1?.toLocaleString()}
                 </td>
-                <td style={{ 
-                  textAlign: 'left', 
-                  padding: '0.5rem 0.25rem',
-                  border: 'none'
-                }}>
+                <td>
                   {groupData.year2?.toLocaleString()}
                 </td>
-                <td style={{ 
-                  textAlign: 'left', 
-                  padding: '0.5rem 0.25rem',
-                  color: groupData.totalChange >= 0 ? '#16a34a' : '#dc2626',
-                  border: 'none'
-                }}>
+                <td className={groupData.totalChange >= 0 ? 'group-details-change-positive' : 'group-details-change-negative'}>
                     {groupData.totalChange >= 0 ? '+' : ''}
                     {groupData.percentChange?.toFixed(1)}%
                 </td>

@@ -37,7 +37,7 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
     return { tickvals, ticktext };
   }, [combinedChange]);
 
-  // Reset selection when data changes (no setTimeout!)
+  // Reset selection when data changes
   useEffect(() => {
     setSelectedRaceGroup(null);
   }, [year1, year2, city]);
@@ -67,52 +67,15 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
     <div className="population-pyramid-container">
 
       {/* Chart and Data */}
-      <div style={{ 
-        display: 'flex', 
-        gap: '2rem', 
-        alignItems: 'flex-start',
-        flexWrap: 'wrap'
-      }}>
-
+      <div className="flex-container">
 
         {/* Left Column - Racial Group Details */}
-        <div style={{
-          position: 'relative',
-          flex: '1 1 500px',
-          minWidth: '450px',
-          maxWidth: '600px',
-          backgroundColor: 'var(--surface)',
-          padding: '2rem',
-          marginTop: '1.5rem',
-          maxHeight: '600px',
-          overflowY: 'auto',
-        }}>
+        <div className="details-wrapper">
           {/* Top section - Key Insights */}
-          <div style={{
-            backgroundColor: 'var(--surface)',
-            borderRadius: '0.75rem',
-            padding: '0rem',
-            marginBottom: '2rem',
-          }}>
-            <div style={{ 
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '1rem'
-            }}>
-              <div className="insight-text" style={{
-                padding: '1rem',
-                backgroundColor: 'var(--surface-light)',
-                borderRadius: '0.5rem',
-                borderLeft: '4px solid var(--primary-color)',
-                margin: 0,
-                lineHeight: '1.6'
-              }}>
-                <h3 style={{ 
-                  marginTop: 0,
-                  marginBottom: '1rem',
-                  color: 'var(--text-primary)',
-                  fontSize: '1.25rem',
-                }}>
+          <div className="insights-wrapper">
+            <div className="insights-grid">
+              <div className="insight-text">
+                <h3 className="insight-title">
                   Key Insights
                 </h3>
                 <p>{data.sentences?.[0]}</p>
@@ -126,7 +89,7 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
           <GroupDetails
             selectedGroup="race"
             groupData={selectedRaceGroup}
-            setSelectedeGroup={setSelectedRaceGroup}
+            setSelectedGroup={setSelectedRaceGroup}
             year1={year1}
             year2={year2}
             city={city}
@@ -136,22 +99,12 @@ const RacePopulationPyramid = ({ data, year1, year2, city }) => {
 
 
         {/* Right column - Chart */}
-        <div className="chart-column" style={{ flex: '0 1 800px', minWidth: '400px', maxWidth: '700px' }}>
-          <h2 style={{ 
-            marginTop: 0,
-            paddingRight: '2rem',
-            color: 'var(--primary-color)',
-            fontSize: '1.4rem',
-            marginBottom: '1.5rem'
-          }}>
+        <div className="chart-wrapper">
+          <h2 className="section-title">
             Population Change by Racial Group
           </h2>
 
-          <p style={{ 
-            marginTop: '-1rem',
-            fontSize: '0.9rem',
-            color: 'var(--text-secondary)'
-          }}>Click a racial group to see more details.</p>
+          <p className="section-subtitle">Click a racial group to see more details.</p>
 
 <Plot
             data={[

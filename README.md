@@ -277,6 +277,17 @@ Shapefiles should follow the Census TIGER/Line naming convention:
 - **State management**: React hooks for local component state
 - **Configuration**: Environment variables for deployment flexibility
 
+### AI Support
+
+#### ChatGPT
+
+I used ChatGPT for some questions in addition to Googling (things you'd find on StackOverflow, syntax, etc.). 
+This was particularly helpful to get started working with the geojson files.
+
+#### Claude
+
+I  used Claude for some frontend support, since this is not  my area of expertise. I've found it especially helpful with CSS and JavaScript syntax. I also used it to generate a template for this README.
+
 ## Future Enhancements
 
 - Transportation analysis (currently disabled in UI)

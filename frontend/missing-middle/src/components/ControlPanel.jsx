@@ -1,6 +1,6 @@
 const ControlPanel = ({ year1, year2, city, setYear1, setYear2, setCity }) => {
     return (
-      <div className="controls-card" style={{ marginTop: '0rem', paddingTop: '0.5rem' }}>
+      <div className="controls-card compact">
         <div className="controls-grid">
           <div className="control-group">
             <label className="control-label" htmlFor="year1-select">Year 1</label>

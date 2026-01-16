@@ -26,12 +26,12 @@ const PopulationPyramid = ({ data, year1, year2, city }) => {
       </div>
 
       {showAge && (
-        <div>
+        <div className="pyramid-section-spacing">
           <AgePopulationPyramid data={ageData} year1={year1} year2={year2} city={city} />
         </div>
       )}
       {showRace && (
-        <div style={{ marginTop: showAge ? '3rem' : '0' }}>
+        <div className="pyramid-section-spacing">
           <RacePopulationPyramid data={raceData} year1={year1} year2={year2} city={city} />
         </div>
       )}
